@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    var run_length = (str) => {
+    var uniqueLetterArr = [];
+    var currentItem = str[0];
+    var index = 0;
+    for(var i = 0; i < str.length; i++){
+        var numberOfRepeats = 0;
+        while(currentItem === str[i]){
+            i++;
+            numberOfRepeats++;
+        }
+        uniqueLetterArr.push(numberOfRepeats);
+        if(uniqueLetterArr.indexOf((str[index]))){
+            uniqueLetterArr.push(str[index]);
+            index = i;
+            currentItem = str[index];
+        }
+        else if (uniqueLetterArr.indexOf(str[i] > -1)){
+            index = i;
+            currentItem = str[index];
+        }
+        if(numberOfRepeats = 1){
+            i = index - numberOfRepeats;
+        }
+        else if (numberOfRepeats >1){
+            i = index - (numberOfRepeats-1);   
+        }
+    }
+    finalString = uniqueLetterArr.join("");
+    return(finalString);
+}
+
+run_length ('aabbcde');
+run_length ('wwwbbbw');
+
+    </script>
+</body>
+</html>

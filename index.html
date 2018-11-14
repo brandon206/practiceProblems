@@ -56,7 +56,23 @@
         }
 
         caesarCipher('dogs',8);
+
+        function print_errors(string){
+            const acceptedValues = 'abcdefghijklm';
+            let numOfBadValues = 0;
+            const lengthOfStr = string.length;
+
+            for(let t = 0; t < string.length; t++){
+                if(acceptedValues.indexOf(string[t]) === -1){
+                    numOfBadValues++;
+                }
+            }
+            return `${numOfBadValues}/${lengthOfStr}`
+            
+        }
+        print_errors('aaabbbbhaijjjm');
+        print_errors('aaaxbbbbyyhwawiwjjjwwm');
     </script>
-    
+
 </body>
 </html>
