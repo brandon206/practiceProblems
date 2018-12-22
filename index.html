@@ -21,5 +21,72 @@
     }
 
     character_convert("the cat in the hat");
-</script>
+  
+        function caesarCipher (str,num) {
+            const alphabet = 'abcdefghijklmnopqrstuvwxyz';
+            const upperAlphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            const specialCharacters = '`~!@#$%^&*()-_=+{}:;,./?\| '
+            let newWord = '';
+
+            for(let i = 0; i < str.length; i++){
+                let newChar = '';
+                if(str[i] == str[i].toUpperCase()){
+                    let indexOfLetter = upperAlphabet.indexOf(str[i]);
+                    if(indexOfLetter === -1 || specialCharacters.indexOf(str[i]) !== -1){
+                        newChar = str[i];
+                        newWord += newChar
+                    }
+                    else{
+                        var index = 0;
+                        index = indexOfLetter + num;
+                        if(index > 25){
+                            index = index - 26;
+                        }
+                        newChar = upperAlphabet[index];
+                        newWord += newChar;
+                    }
+                }   
+                else if (str[i] == str[i].toLowerCase()){
+                    let indexOfLetter = alphabet.indexOf(str[i]);
+                    if(indexOfLetter === -1 || specialCharacters.indexOf(str[i]) !== -1){
+                        newChar = str[i];
+                        newWord += newChar
+                    }
+                    else{
+                        var index = 0;
+                        index = indexOfLetter + num;
+                        if(index > 25){
+                            index = index - 26;
+                        }
+                        newChar = alphabet[index];
+                        newWord += newChar;
+                    }
+                }
+                
+            }
+
+            return newWord;
+            
+        }
+
+        caesarCipher('dogs',8);
+
+        function print_errors(string){
+            const acceptedValues = 'abcdefghijklm';
+            let numOfBadValues = 0;
+            const lengthOfStr = string.length;
+
+            for(let t = 0; t < string.length; t++){
+                if(acceptedValues.indexOf(string[t]) === -1){
+                    numOfBadValues++;
+                }
+            }
+            return `${numOfBadValues}/${lengthOfStr}`
+            
+        }
+        print_errors('aaabbbbhaijjjm');
+        print_errors('aaaxbbbbyyhwawiwjjjwwm');
+    </script>
+
+</body>
 </html>
