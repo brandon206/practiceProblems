@@ -1,15 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
 <body>
     
-</body>
 <script>
+    var findAndReplacePattern = function(words, pattern) {
+        let result = [];
+        for (let i = 0; i < words.length; i++){
+            let words_log = {};
+            let pattern_log = {};
+            let flag = true;
+            for(let z = 0; z < pattern.length; z++){
+                if(words_log[words[i][z]] !== pattern_log[pattern[z]]){
+                    flag = false;
+                    break;
+                }
+                words_log[words[i][z]] = z;
+                pattern_log[pattern[z]] = z;
+            }
+            if(flag){
+                result.push(words[i]);
+            }
+        }
+        return result;
+    };
+
+    findAndReplacePattern(["aa","bb","ab","cd"],"aa");
+
     function character_convert (string) {
         let result = '';
         for( let i = 0; i < string.length; i++){
