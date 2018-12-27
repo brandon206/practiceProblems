@@ -10,27 +10,24 @@
     
 </body>
 <script>
-    var findAndReplacePattern = function(words, pattern) {
-        let result = [];
-        for (let i = 0; i < words.length; i++){
-            let words_log = {};
-            let pattern_log = {};
-            let flag = true;
-            for(let z = 0; z < pattern.length; z++){
-                if(words_log[words[i][z]] !== pattern_log[pattern[z]]){
-                    flag = false;
-                    break;
-                }
-                words_log[words[i][z]] = z;
-                pattern_log[pattern[z]] = z;
-            }
-            if(flag){
-                result.push(words[i]);
+    var maxArea = function(height) {
+        var list = [];
+        for(var i = 1; i < height.length+1; i++){
+            var x = i;
+            var y = height[i];
+            coords = {};
+            coords[axis] = {x, y};
+            list.push(coords);
+        }
+
+        for(var x = 0; x < list.length; x++){
+            var highestY = null;
+            if(list[x].axis.y > highestY){
+                highestY = list[x].axis.y;
             }
         }
-        return result;
+        
     };
-
-    findAndReplacePattern(["aa","bb","ab","cd"],"aa");
+    maxArea([1,8,6,2,5,4,8,3,7]);
 </script>
 </html>
