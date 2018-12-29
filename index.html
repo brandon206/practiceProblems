@@ -10,24 +10,36 @@
     
 </body>
 <script>
-    var maxArea = function(height) {
-        var list = [];
-        for(var i = 1; i < height.length+1; i++){
-            var x = i;
-            var y = height[i];
-            coords = {};
-            coords[axis] = {x, y};
-            list.push(coords);
-        }
+    function pigLatin(string){
+    var lowerCaseString = string.toLowerCase();
+    var listOfStrings = lowerCaseString.split(" ");
+    var vowels = ["a", "e", "i", "o", "u"];
+    var newList = [];
 
-        for(var x = 0; x < list.length; x++){
-            var highestY = null;
-            if(list[x].axis.y > highestY){
-                highestY = list[x].axis.y;
+    for(let i = 0; i < listOfStrings.length; i++){
+        const currentWord = listOfStrings[i];
+        var isVowel = null;
+        for(let x = 0; x < vowels.length; x++){
+            const currentVowel = vowels[x];
+            if(currentWord[0] !== currentVowel){
+                isVowel = false;
+            }else {
+                isVowel = true;
+                break;
             }
         }
-        
-    };
-    maxArea([1,8,6,2,5,4,8,3,7]);
+        if(isVowel === false){
+            var currentConsonant = currentWord[0].slice(0,1);
+            var newWord = currentWord.slice(1,currentWord.length) + currentConsonant + "ay";
+            newList.push(newWord);
+        } else {
+            var newWord = currentWord + "ay";
+            newList.push(newWord);
+        }
+    }
+    return newList.join(" ");
+}
+
+pigLatin("Hello my name is Stu");
 </script>
 </html>
