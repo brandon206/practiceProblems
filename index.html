@@ -9,26 +9,37 @@
 <body>
     
 <script>
-    var findAndReplacePattern = function(words, pattern) {
-        let result = [];
-        for (let i = 0; i < words.length; i++){
-            let words_log = {};
-            let pattern_log = {};
-            let flag = true;
-            for(let z = 0; z < pattern.length; z++){
-                if(words_log[words[i][z]] !== pattern_log[pattern[z]]){
-                    flag = false;
-                    break;
-                }
-                words_log[words[i][z]] = z;
-                pattern_log[pattern[z]] = z;
-            }
-            if(flag){
-                result.push(words[i]);
+    function pigLatin(string){
+    var lowerCaseString = string.toLowerCase();
+    var listOfStrings = lowerCaseString.split(" ");
+    var vowels = ["a", "e", "i", "o", "u"];
+    var newList = [];
+
+    for(let i = 0; i < listOfStrings.length; i++){
+        const currentWord = listOfStrings[i];
+        var isVowel = null;
+        for(let x = 0; x < vowels.length; x++){
+            const currentVowel = vowels[x];
+            if(currentWord[0] !== currentVowel){
+                isVowel = false;
+            }else {
+                isVowel = true;
+                break;
             }
         }
-        return result;
-    };
+        if(isVowel === false){
+            var currentConsonant = currentWord[0].slice(0,1);
+            var newWord = currentWord.slice(1,currentWord.length) + currentConsonant + "ay";
+            newList.push(newWord);
+        } else {
+            var newWord = currentWord + "ay";
+            newList.push(newWord);
+        }
+    }
+    return newList.join(" ");
+}
+
+pigLatin("Hello my name is Stu");
 
     findAndReplacePattern(["aa","bb","ab","cd"],"aa");
 
