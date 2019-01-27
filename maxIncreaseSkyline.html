@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        function maxIncreaseKeepingSkyline(grid) {
+            var gridCopy = [];
+            for(var num = 0; num < grid.length; num++){
+                gridCopy.push([...grid[num]]);
+            }
+            var skyLR = [];
+            var skyTB = [];
+            var totalSum = 0;
+            var totalSumCopy = 0;
+            for(i = 0;  i < gridCopy.length; i++){
+                var highestLR = 0;
+                var highestTB = 0;
+                for(x = 0; x < gridCopy[0].length; x++){
+                    totalSum += gridCopy[i][x];
+                    if(gridCopy[i][x] > highestLR){
+                        highestLR = gridCopy[i][x];
+                    }
+                    if(gridCopy[x][i] > highestTB){
+                        highestTB = gridCopy[x][i];
+                    }
+                }
+                skyLR.push(highestLR);
+                skyTB.push(highestTB);
+
+            }
+            for(t = 0; t< gridCopy.length; t++){
+                for(v = 0; v < gridCopy[0].length; v++){
+                    if(gridCopy[t][v] < skyLR[t] && gridCopy[t][v] < skyTB[v]){
+                        if(skyLR[t] >= skyTB[v]){
+                            gridCopy[t][v]= skyTB[v];
+                        } else if(skyTB[v] >= skyLR[t]){
+                            gridCopy[t][v] = skyLR[t];
+                        }
+                    }
+                    totalSumCopy += gridCopy[t][v];
+
+                }
+            }
+            console.log("grid: ", grid);
+            console.log("gridCopy: ", gridCopy);
+            return totalSumCopy - totalSum;
+        };
+
+maxIncreaseKeepingSkyline([[3,0,8,4],[2,4,5,7],[9,2,6,3],[0,3,1,0]]);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
