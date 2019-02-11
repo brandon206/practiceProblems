@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css">
+</head>
+<body>
+    
+</body>
+<script>
+    /**
+    * Definition for a binary tree node.
+    * function TreeNode(val) {
+    *     this.val = val;
+    *     this.left = this.right = null;
+    * }
+    */
+    /**
+    * @param {number[]} nums
+    * @return {TreeNode}
+    */
+    var constructMaximumBinaryTree = function(nums) {
+        if(nums.length <= 0){
+            return null;
+        }
+        
+        var index = null;
+        var maxNum = null;
+        for(var i = 0; i < nums.length; i++){
+            if(nums[i] > maxNum){
+                maxNum = nums[i];
+                index = i;
+            }
+        }
+
+        var root=new TreeNode(maxNum);
+        var left=nums.slice(0,index);
+        var right=nums.slice(index+1);
+        root.left=constructMaximumBinaryTree(left);
+        root.right=constructMaximumBinaryTree(right);
+        
+        return root;
+    };
+</script>
+</html>
